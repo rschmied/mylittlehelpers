@@ -1,4 +1,7 @@
 #!/bin/bash
+#
+# ralph schmieder <ralph.schmieder@gmail.com>
+#
 # inspired by
 # https://stackoverflow.com/questions/20433867/git-ahead-behind-info-between-master-and-branch?lq=1
 
@@ -25,33 +28,31 @@ ORIGIN=""
 
 # command line parsing
 POSITIONAL=()
-while [[ $# -gt 0 ]]
-do
-key="$1"
-
-case $key in
-    -o|--origin)
-    ORIGIN="origin/"
-    shift # past argument
-    ;;
-    -j|--json)
-    JSON="YES"
-    shift # past argument
-    ;;
-    -b|--branch)
-    BRANCH="$2"
-    shift # past argument
-    shift # past value
-    ;;
-    -h|--help)
-    show_help
-    exit
-    ;;
-    *)    # unknown option
-    POSITIONAL+=("$1") # save it in an array for later
-    shift # past argument
-    ;;
-esac
+while [ $# -gt 0 ]; do
+    key="$1"
+    case $key in
+        -o|--origin)
+        ORIGIN="origin/"
+        shift # past argument
+        ;;
+        -j|--json)
+        JSON="YES"
+        shift # past argument
+        ;;
+        -b|--branch)
+        BRANCH="$2"
+        shift # past argument
+        shift # past value
+        ;;
+        -h|--help)
+        show_help
+        exit
+        ;;
+        *)    # unknown option
+        POSITIONAL+=("$1") # save it in an array for later
+        shift # past argument
+        ;;
+    esac
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
